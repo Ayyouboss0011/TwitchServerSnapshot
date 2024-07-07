@@ -1,0 +1,65 @@
+version: "3"
+
+services:
+  vpn7:
+    image: qmcgaw/gluetun
+    container_name: vpn7
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - VPN_SERVICE_PROVIDER=windscribe
+      - VPN_TYPE=wireguard
+      - WIREGUARD_PRIVATE_KEY=SEi6rOmMmuEmBGYhZ+EPfDmJQgU/cZL1bbVfIVi+iF4=
+      - WIREGUARD_ADDRESSES=100.91.190.138/32
+      - WIREGUARD_PRESHARED_KEY=LlmNeBsvHHwxqSId1RWFOpcEn3G8CrGA6LJruM5W6Yw=
+      - SERVER_REGIONS=US East
+
+  vpn8:
+    image: qmcgaw/gluetun
+    container_name: vpn8
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - VPN_SERVICE_PROVIDER=windscribe
+      - VPN_TYPE=wireguard
+      - WIREGUARD_PRIVATE_KEY=SEi6rOmMmuEmBGYhZ+EPfDmJQgU/cZL1bbVfIVi+iF4=
+      - WIREGUARD_ADDRESSES=100.91.190.138/32
+      - WIREGUARD_PRESHARED_KEY=LlmNeBsvHHwxqSId1RWFOpcEn3G8CrGA6LJruM5W6Yw=
+      - SERVER_REGIONS=US East
+
+  vpn9:
+    image: qmcgaw/gluetun
+    container_name: vpn9
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - VPN_SERVICE_PROVIDER=windscribe
+      - VPN_TYPE=wireguard
+      - WIREGUARD_PRIVATE_KEY=SEi6rOmMmuEmBGYhZ+EPfDmJQgU/cZL1bbVfIVi+iF4=
+      - WIREGUARD_ADDRESSES=100.91.190.138/32
+      - WIREGUARD_PRESHARED_KEY=LlmNeBsvHHwxqSId1RWFOpcEn3G8CrGA6LJruM5W6Yw=
+      - SERVER_REGIONS=US East
+
+  b7:
+    image: ayyouboss0011/einsamerigelplaywright
+    container_name: b7
+    network_mode: service:vpn7
+    restart: always
+    depends_on:
+      - vpn7
+
+  b8:
+    image: ayyouboss0011/einsamerigelplaywright
+    container_name: b8
+    network_mode: service:vpn8
+    restart: always
+    depends_on:
+      - vpn8
+
+  b9:
+    image: ayyouboss0011/einsamerigelplaywright
+    container_name: b9
+    network_mode: service:vpn9
+    restart: always
+    depends_on:
+      - vpn9
